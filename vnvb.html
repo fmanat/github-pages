@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pose ta question à GPT</title>
+</head>
+<body>
+  <h1>Pose une question</h1>
+  <input type="text" id="question" placeholder="Ta question ici">
+  <button onclick="ask()">Envoyer</button>
+  <pre id="response"></pre>
+
+  <script>
+    async function ask() {
+      const question = document.getElementById("question").value;
+      const res = await fetch("https://fmanat.app.n8n.cloud/webhook/ton-id?question=" + encodeURIComponent(question));
+      const data = await res.json();
+      document.getElementById("response").textContent = data.reply || JSON.stringify(data);
+    }
+  </script>
+</body>
+</html>
